@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<script type="text/javascript">
+
+    function promiseAjax(url){
+        return new Promise((resolve, reject)=>{
+            const xhr = new XMLHttpRequest()
+            xhr.onreadystatechange=function (){
+                if (xhr.readyState!==4) return;
+
+                if (xhr.readyState === 4 && xhr.status ===200){
+                    resolve(JSON.parse(xhr.response))
+                }else {
+                    reject(new Error((xhr.status+"")))
+                }
+            }
+            xhr.open("GET",url)
+            xhr.send()
+
+        })
+    }
+promiseAjax("http://poetry.apiopen.top/sentences")
+    .then(
+        (value)=>{console.log(value.result)},
+        (reason)=>{alert(reason)}
+    )
+
+
+    Promise.
+
+</script>
+
+
+</body>
+</html>
